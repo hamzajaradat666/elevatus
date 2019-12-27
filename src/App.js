@@ -343,6 +343,7 @@ class App extends Component {
           <div className="CVsContainer mt-3 p-3 w-75">
             <h5>Uploaded CVs</h5>
             <div className="row container-fluid ">
+              {this.state.filterdCVs.length===0?<div className="text-center btn btn-light w-100 text-dark" style={{height:"30vh"}}> Sorry, No results found</div>:<div></div>}
               {
                 finalCVs.map(cv => {
                   return <div className="col-sm-12 rounded p-2 mt-3 bg-white">
