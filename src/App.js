@@ -186,90 +186,90 @@ class App extends Component {
     this.setState({
       filters: [...filters]
     })
-    
+
     this.handleSearch([...this.state.CVs])
 
   }
   handleSearch(CVS) {
     let filterdCVs = CVS
     let filters = [...this.state.filters]
-    
-    
+
+
     filters.forEach(filter => {
       console.log(filter);
-      if(filter.value!=="")
-      switch (filter.type) {
-        case "keyword":
-          filterdCVs = filterdCVs.filter(cv => {
-              let skill = cv.skills.some(skill=>skill.toLowerCase().includes(filter.value))
-            if (cv.name.toLowerCase().includes(filter.value) ||
-              cv.address.toLowerCase().includes(filter.value) ||
-              cv.email.toLowerCase().includes(filter.value) ||
-              cv.major.toLowerCase().includes(filter.value) ||
-              cv.jobTitle.toLowerCase().includes(filter.value) ||
-              cv.carrerLevel.toLowerCase().includes(filter.value)||
-              skill
-              ){
-              
+      if (filter.value !== "")
+        switch (filter.type) {
+          case "keyword":
+            filterdCVs = filterdCVs.filter(cv => {
+              let skill = cv.skills.some(skill => skill.toLowerCase().includes(filter.value))
+              if (cv.name.toLowerCase().includes(filter.value) ||
+                cv.address.toLowerCase().includes(filter.value) ||
+                cv.email.toLowerCase().includes(filter.value) ||
+                cv.major.toLowerCase().includes(filter.value) ||
+                cv.jobTitle.toLowerCase().includes(filter.value) ||
+                cv.carrerLevel.toLowerCase().includes(filter.value) ||
+                skill
+              ) {
+
                 return true
 
               }
               return ""
-          })
-          break;
+            })
+            break;
 
-        case "jobtitle":
+          case "jobtitle":
 
-          filterdCVs = filterdCVs.filter(cv => cv.jobTitle.toLowerCase().includes(filter.value))
-  
-          break;
-        case "major":
+            filterdCVs = filterdCVs.filter(cv => cv.jobTitle.toLowerCase().includes(filter.value))
 
-          filterdCVs = filterdCVs.filter(cv => cv.major.toLowerCase().includes(filter.value))
-  
-          break;
-        case "level":
+            break;
+          case "major":
 
-          filterdCVs = filterdCVs.filter(cv => cv.carrerLevel.toLowerCase().includes(filter.value))
+            filterdCVs = filterdCVs.filter(cv => cv.major.toLowerCase().includes(filter.value))
 
-          break;
+            break;
+          case "level":
+
+            filterdCVs = filterdCVs.filter(cv => cv.carrerLevel.toLowerCase().includes(filter.value))
+
+            break;
 
           case "exp":
             switch (filter.value) {
               case "1":
-                  filterdCVs=filterdCVs.filter(cv => cv.yearsOfexp >= 10)
+                filterdCVs = filterdCVs.filter(cv => cv.yearsOfexp >= 10)
                 break;
               case "2":
-                  filterdCVs=filterdCVs.filter(cv => cv.yearsOfexp <= 10)
+                filterdCVs = filterdCVs.filter(cv => cv.yearsOfexp <= 10)
                 break;
               default:
                 break;
             }
 
-          break;
-          
+            break;
+
           case "sort":
             switch (filter.value) {
               case "1":
-                  filterdCVs = filterdCVs.sort((a, b) => parseFloat(a.yearsOfexp) - parseFloat(b.yearsOfexp))
+                filterdCVs = filterdCVs.sort((a, b) => parseFloat(a.yearsOfexp) - parseFloat(b.yearsOfexp))
                 break;
               case "2":
-                  filterdCVs =filterdCVs.sort((a, b) => parseFloat(a.yearsOfexp) - parseFloat(b.yearsOfexp)).reverse()
+                filterdCVs = filterdCVs.sort((a, b) => parseFloat(a.yearsOfexp) - parseFloat(b.yearsOfexp)).reverse()
                 break;
               default:
                 break;
             }
-          break;
-        default:
-          break;
-      }
+            break;
+          default:
+            break;
+        }
     })
-    
-    
+
+
     this.setState({
       filterdCVs
     })
-     
+
 
   }
 
@@ -277,21 +277,23 @@ class App extends Component {
 
     let task1 = this.task1()
     let task2 = this.task2()
-    
+
     return (
-      <React.Fragment>{task2}</React.Fragment>
+      <React.Fragment>{task1}</React.Fragment>
     );
   }
   task1() {
-    return (<div className="pt-4 bg-my-grey d-flex flex-column">
-      <div className="mr-auto ml-5">
-        <h5>Upload Resumes</h5>
-        <p className="mt-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-      </div>
+    return (<div className="pt-4 bg-my-grey d-flex flex-column ">
+      
       <div className="container-1 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex flex-column justify-content-center align-items-center text-secondary">
-        <div className="bg-my-grey">
-          <div className="mt-2 formContainer  pl-3 pr-3 pb-5 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex flex-column align-items-center">
-            <div className="w-100 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex flex-column justify-content-center align-items-center p-5" >
+      
+        <div className="bg-my-grey col-sm-12">
+        <div className="mr-auto">
+      <h5>Upload Resumes</h5>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </div>
+          <div className="mt-2 formContainer w-100 pl-3 pr-3 pb-5 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex flex-column ">
+            <div className="w-100 d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex flex-column justify-content-center p-5" >
               <label className="fileSelect w-100  ml-auto mr-auto" style={{ height: "45vh" }}>
                 <input className="hidden" type="file" multiple disabled={this.state.filesList.length === this.state.maxNumOfResumes} onChange={(e) => this.handleFiles(e)}></input>
                 <div className="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex flex-column justify-content-center align-items-center h-75">
@@ -299,15 +301,15 @@ class App extends Component {
                   <div><h5 className="text-center">Click here to upload files </h5></div>
                 </div>
               </label>
-              <div className="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex w-100 mt-2">
+              <div className="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex w-100 mt-2 flex-wrap justify-content-between">
 
-                <div>
-                  <div className="text-center">Note: You Can Upload Max of {this.state.maxNumOfResumes} resume.</div>
+                <div className="flex-grow-1 ">
+                  <div className="">Note: You Can Upload Max of {this.state.maxNumOfResumes} resume.</div>
 
                 </div>
 
-                <div className="text-center ml-auto">
-                  <input className="btn myBtn pl-0 pr-0 pt-3 pb-3 " value="Upload CV" readOnly disabled={this.state.filesList.length === this.state.maxNumOfResumes}></input>
+                <div className=".">
+                  <input className="btn myBtn pt-3 pb-3" value="Upload CV" readOnly disabled={this.state.filesList.length === this.state.maxNumOfResumes}></input>
                 </div>
 
               </div>
@@ -319,10 +321,9 @@ class App extends Component {
 
           </div>
           <div className="text-dark ">
-            <div className="d-flex w-100">
-              <div className="col-md-4"></div>
-              <div className="mt-5 text-center col-md-6"><h5>{this.state.resumeBalance} Resume Balance</h5></div>
-              <div className="mt-5 text-center ml-auto"><h5>{this.state.filesList.length} {this.state.filesList.length <= 1 ? <span>Resume</span> : <span>Resumes</span>} Uploaded</h5></div>
+            <div className="d-flex flex-row-reverse justify-content-around w-100">
+              <div className="mt-5 mr-5"><h5>{this.state.resumeBalance} Resume Balance</h5></div>
+              <div className="mt-5 "><h5>{this.state.filesList.length} {this.state.filesList.length <= 1 ? <span>Resume</span> : <span>Resumes</span>} Uploaded</h5></div>
             </div>
             <div className="progress bg-dark mb-1 w-100">
               <div id="progressBar" className="progress-bar progress-bar-animated myProgressBar"
@@ -339,17 +340,17 @@ class App extends Component {
     let finalCVs = this.state.filterdCVs
     return (
       <div className="container myContainer" >
-        <div className="d-flex justify-content-between">
-          <div className="CVsContainer mt-3 p-3 w-75">
+        <div className="d-flex flex-wrap-reverse ">
+          <div className="CVsContainer mt-3 p-3 w-100 col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 lg">
             <h5>Uploaded CVs</h5>
-            <div className="row container-fluid ">
-              {this.state.filterdCVs.length===0?<div className="text-center btn btn-light w-100 text-dark" style={{height:"30vh"}}> Sorry, No results found</div>:<div></div>}
+            <div className="row m-2 mr-2">
+              {this.state.filterdCVs.length === 0 ? <div className="text-center btn btn-light w-100 text-dark" style={{ height: "30vh" }}> Sorry, No results found</div> : <div></div>}
               {
                 finalCVs.map(cv => {
                   return <div className="col-sm-12 rounded p-2 mt-3 bg-white">
                     <div className="mt-2 ml-2">
                       <div className="d-flex justify-content-between">
-                        <img className="rounded-circle" src={uploadImage} alt="" width="30px"></img><span className="ml-3 mr-auto font-13" >{cv.name}</span><span className="align-self-end f-13" ><img src={approvedImage} alt=""width="30px"></img></span>
+                        <img className="rounded-circle" src={uploadImage} alt="" width="30px"></img><span className="ml-3 mr-auto font-13" >{cv.name}</span><span className="align-self-end f-13" ><img src={approvedImage} alt="" width="30px"></img></span>
                       </div>
                       <div className="pl-5 font-12" >
                         <div><img alt="" src={locationSvg} width="16px" className="mr-2 mb-1"></img>{cv.address}</div>
@@ -372,8 +373,14 @@ class App extends Component {
 
             </div>
           </div>
-          <div className="mt-3 filters w-25 ml-3">
-            <div className="" style={{ backgroundColor: "white", height: "60vh" }}>
+
+          <div className="mt-2 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
+            <nav className="navbar navbar-expand-md">
+              <button className="navbar-toggler navbar-toggler-right bg-my-primary2 w-100 rounded border-0" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon dropdown-toggle text-light "></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                <div className="w-100" style={{ backgroundColor: "white", height: "600px" }}>
               <div className="rounded-top text-light text-left pr-3 pl-3 pt-2 pb-2 w-100 bg-my-primary2"><h6 className="mt-2 text-light">Filters</h6></div>
               <div className="d-flex mt-3 ml-4 mr-4">
                 <img src={sortSvg} alt="" width="16px" className="mr-2 mb-1"></img>
@@ -413,7 +420,10 @@ class App extends Component {
 
 
             </div>
+                
 
+              </div>
+            </nav>
           </div>
         </div>
       </div>

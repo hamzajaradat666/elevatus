@@ -40,7 +40,6 @@ p{
 .formContainer {
   background-color: #fff;
   border-radius: 10px;
-  width: 95vw;
 
 }
 
@@ -73,13 +72,12 @@ p{
 .filesContainer{
   background-color: #fff;
   overflow-y: scroll;
-  max-height: 7.5vh;
-  min-height: 7.5vh;
+  max-height: 9vh;
 }
 .filesContainerPlaceholder{
   opacity: 0;
-  max-height: 7.5vh;
-  min-height: 7.5vh;
+  max-height: 9vh;
+  min-height: 9vh;
   
 }
 
@@ -127,3 +125,4 @@ p{
 .bg-my-primary2{
   background-color: #4c57b8;
 }
+
